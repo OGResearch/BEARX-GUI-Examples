@@ -28,7 +28,7 @@
     "label": "Save output table as an Excel file"
   },
   "SaveCSV": {
-    "value": true,
+    "value": false,
     "type": "logical",
     "label": "Save output table as a CSV file"
   },

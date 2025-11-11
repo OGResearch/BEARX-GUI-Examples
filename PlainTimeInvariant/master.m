@@ -4,7 +4,7 @@
 % Graphical User Interface. Feel free to edit and adapt it further to your
 % needs.
 %
-% Generated 11-Nov-2025 20:31:26
+% Generated 11-Nov-2025 22:10:10
 %
 
 
@@ -51,6 +51,21 @@ end
 dummyObjects = {};
 
 
+%% Create Minnesota prior dummy observations 
+
+% Create Minnesota prior dummy observations object
+minnesotaDummies = dummies.Minnesota( ...
+    Lambda=0.1 ...
+    , LagDecay=1 ...
+    , Autoregression=0.8 ...
+    , Exogenous=false ...
+    , ExogenousLambda=100 ...
+);
+
+% Include the dummies in the cell array for use in the reduced-form model
+dummyObjects{end+1} = minnesotaDummies;
+
+
 %% Prepare meta information 
 
 % Create a meta information object
@@ -68,7 +83,7 @@ meta = Meta( ...
 %% Load input data table 
 
 % Load the input data table
-inputTbl = tablex.fromFile("/Users/myself/Documents/ogr-external-projects/ecb-bear/gui_poc/exampleDataX.csv");
+inputTbl = tablex.fromFile("/Users/myself/Documents/ogr-external-projects/ecb-bear/BEARX-GUI-Examples/PlainTimeInvariant/exampleDataX.csv");
 display(inputTbl);
 
 
@@ -160,16 +175,16 @@ display(redForecastPercentilesTbl);
 % Define the output path for saving the results
 outputPath = fullfile(outputFolder, "redForecastPercentiles");
 
-% Save the forecast results in percentiles as MAT and/or CSV and/or
+% Save the forecast results as percentiles as MAT and/or CSV and/or
 % and XLS files
 % save(outputPath + ".mat", "redForecastPercentilesTbl");
-tablex.writetimetable(redForecastPercentilesTbl, outputPath + ".csv");
+% tablex.writetimetable(redForecastPercentilesTbl, outputPath + ".csv");
 tablex.writetimetable(redForecastPercentilesTbl, outputPath + ".xlsx");
 
-% Plot the forecast results in percentiles
+% Plot the forecast results as percentiles
 figureHandles = chartpack.forecastPercentiles( ...
     redForecastPercentilesTbl, redModel ...
-    , "figureTitle", "Reduced-form model forecast percentiles" ...
+    , "figureTitle", "Reduced-form model forecast (percentiles)" ...
     , "figureLegend", percentilesLegend ...
 );
 
@@ -194,10 +209,10 @@ display(structForecastPercentilesTbl);
 % Define the output path for saving the results
 outputPath = fullfile(outputFolder, "structForecastPercentiles");
 
-% Save the forecast results in percentiles as MAT and/or CSV and/or
+% Save the forecast results as percentiles as MAT and/or CSV and/or
 % and XLS files
 % save(outputPath + ".mat", "structForecastPercentilesTbl");
-tablex.writetimetable(structForecastPercentilesTbl, outputPath + ".csv");
+% tablex.writetimetable(structForecastPercentilesTbl, outputPath + ".csv");
 tablex.writetimetable(structForecastPercentilesTbl, outputPath + ".xlsx");
 
 if ~isempty(structForecastContribsTbl)
@@ -212,14 +227,78 @@ if ~isempty(structForecastContribsTbl)
 
     % Save the percentiles of the forecast contributions
     % save(outputPath + ".mat", "structForecastContribsPercentilesTbl");
-    tablex.writetimetable(structForecastContribsPercentilesTbl, outputPath + ".csv");
+    % tablex.writetimetable(structForecastContribsPercentilesTbl, outputPath + ".csv");
     tablex.writetimetable(structForecastContribsPercentilesTbl, outputPath + ".xlsx");
 end
 
-% Plot the model forecast results in percentiles
+% Plot the forecast results as percentiles
 figureHandles = chartpack.forecastPercentiles( ...
     structForecastPercentilesTbl, structModel ...
-    , "figureTitle", "Structural model forecast percentiles" ...
+    , "figureTitle", "Structural model forecast (percentiles)" ...
+    , "figureLegend", percentilesLegend ...
+);
+
+% Save the figures
+chartpack.printFiguresPDF(figureHandles, outputPath);
+
+
+%% Run conditional forecast 
+
+% Read table with custom conditioning data
+inputPath__ = fullfile("tables", "ConditioningData.xlsx");
+conditioningData = tablex.readConditioningData( ...
+    inputPath__, ...
+    timeColumn="Conditioning data" ...
+);
+display(conditioningData);
+
+% No conditioning plan used, all shocks are taken into account
+conditioningPlan = [];
+
+
+% Run a conditional forecast
+[condForecastTbl, condForecastContribsTbl] = structModel.conditionalForecast( ...
+    datex.span("2015-Q1", "2016-Q4") ...
+    , conditions=conditioningData ...
+    , plan=conditioningPlan ...
+    , exogenousFrom="inputData" ...
+    , contributions=false ...
+    , includeInitial=false...
+);
+
+% Condense the results to percentiles
+condForecastPercentilesTbl = tablex.apply(condForecastTbl, percentilesFunc);
+display(condForecastPercentilesTbl);
+
+% Define the output path for saving the results
+outputPath = fullfile(outputFolder, "condForecastPercentiles");
+
+% Save the conditional forecast results as percentiles as MAT and/or CSV and/or
+% XLSX files
+% save(outputPath + ".mat", "condForecastPercentilesTbl");
+tablex.writetimetable(condForecastPercentilesTbl, outputPath + ".csv");
+tablex.writetimetable(condForecastPercentilesTbl, outputPath + ".xlsx");
+
+if ~isempty(condForecastContribsTbl)
+    % Condense the results to percentiles
+    condForecastContribsPercentilesTbl = tablex.apply(condForecastContribsTbl, percentilesFunc);
+
+    % Flatten the 3D contributions table to 2D contributions table
+    condForecastContribsPercentilesTbl = tablex.flatten(condForecastContribsPercentilesTbl);
+
+    % Define the output path for saving the results
+    outputPath = fullfile(outputFolder, "condForecastContribsPercentiles");
+
+    % Save the results
+    % save(outputPath + ".mat", "condForecastContribsPercentilesTbl");
+    tablex.writetimetable(condForecastContribsPercentilesTbl, outputPath + ".csv");
+    tablex.writetimetable(condForecastContribsPercentilesTbl, outputPath + ".xlsx");
+end
+
+% Plot the forecast results as percentiles
+figureHandles = chartpack.conditionalForecastPercentiles( ...
+    condForecastPercentilesTbl, structModel ...
+    , "figureTitle", "Conditional forecast (percentiles)" ...
     , "figureLegend", percentilesLegend ...
 );
 
@@ -242,17 +321,73 @@ display(responsePercentilesTbl);
 % Define the output path for saving the results
 outputPath = fullfile(outputFolder, "responsePercentiles");
 
-% Save the shock response results in percentiles as MAT and/or CSV and/or XLSX
+% Save the shock response results as percentiles as MAT and/or CSV and/or XLSX
 % files
 % save(outputPath + ".mat", "responsePercentilesTbl");
 tablex.writetimetable(responsePercentilesTbl, outputPath + ".csv");
 tablex.writetimetable(responsePercentilesTbl, outputPath + ".xlsx");
 
-% Plot the shock response results in percentiles
+% Plot the shock response results as percentiles
 figureHandles = chartpack.responsePercentiles( ...
     responsePercentilesTbl, structModel ...
-    , "figureTitle", "Shock response percentiles" ...
+    , "figureTitle", "Shock response (percentiles)" ...
     , "figureLegend", percentilesLegend ...
+);
+
+% Save the figures as a PDF
+chartpack.printFiguresPDF(figureHandles, outputPath);
+
+
+%% Calculate forecast error variance decomposition (FEVD)
+
+% Calculate FEVD over shock response horizon
+fevdTbl = structModel.calculateFEVD( ...
+    includeInitial=true ...
+);
+
+% Condense the results to percentiles and flatten the 3D table to 2D table
+fevdPercentilesTbl = tablex.apply(fevdTbl, percentilesFunc);
+fevdPercentilesTbl = tablex.flatten(fevdPercentilesTbl);
+display(fevdPercentilesTbl);
+
+% Define the output path for saving the results
+outputPath = fullfile(outputFolder, "fevdPercentiles");
+
+% Save the results as percentiles as MAT and/or CSV and/or XLSX files
+% save(outputPath + ".mat", "fevdPercentilesTbl");
+tablex.writetimetable(fevdPercentilesTbl, outputPath + ".csv");
+tablex.writetimetable(fevdPercentilesTbl, outputPath + ".xlsx");
+
+
+%% Calculate shock contributions to historical paths
+
+% Calculate the contributions
+contribTbl = structModel.calculateContributions( ...
+    includeInitial=false ...
+);
+
+% Condense the results to percentiles and flatten the 3D table to 2D table
+contribPercentilesTbl = tablex.apply(contribTbl, percentilesFunc);
+contribPercentilesTbl = tablex.flatten(contribPercentilesTbl);
+display(contribPercentilesTbl);
+
+% Condense the results to median and flatten the 3D table to 2D table
+contribMedianTbl = tablex.apply(contribTbl, medianFunc);
+display(contribMedianTbl);
+
+% Define the output path for saving the results
+outputPath = fullfile(outputFolder, "contribPercentiles");
+
+% Save the shock contribution results as percentiles as MAT and/or CSV and/or
+% XLSX files
+% save(outputPath + ".mat", "contribPercentilesTbl");
+% tablex.writetimetable(contribPercentilesTbl, outputPath + ".csv");
+tablex.writetimetable(contribPercentilesTbl, outputPath + ".xlsx");
+
+% Plot the shock response results as percentiles
+figureHandles = chartpack.contributionsMedian( ...
+    contribMedianTbl, structModel ...
+    , "figureTitle", "Shock contributions (median)" ...
 );
 
 % Save the figures as a PDF
