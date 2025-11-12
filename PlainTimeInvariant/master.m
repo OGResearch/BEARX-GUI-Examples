@@ -4,7 +4,7 @@
 % Graphical User Interface. Feel free to edit and adapt it further to your
 % needs.
 %
-% Generated 11-Nov-2025 22:10:10
+% Generated 12-Nov-2025 10:54:41
 %
 
 
@@ -64,6 +64,17 @@ minnesotaDummies = dummies.Minnesota( ...
 
 % Include the dummies in the cell array for use in the reduced-form model
 dummyObjects{end+1} = minnesotaDummies;
+
+
+%% Create InitialObs prior dummy observations 
+
+% Create InitialObs prior dummy observations object
+initialObsDummies = dummies.InitialObs( ...
+    Lambda=0.1 ...
+);
+
+% Include the dummies in the cell array for use in the reduced-form model
+dummyObjects{end+1} = initialObsDummies;
 
 
 %% Prepare meta information 
@@ -132,10 +143,12 @@ info = redModel.presample(1000);
 display(info);
 
 
-%% Create Cholesky identification object 
+%% Create InstantZeros identification object 
 
-ident = identifier.Cholesky( ...
-    Order="" ...
+ident = identifier.InstantZeros( ...
+    FileName="tables/InstantZeros.xlsx" ...
+    , RandomGenerator="randn" ...
+    , FactorizationFunc="chol" ...
 );
 
 display(ident);
@@ -263,7 +276,7 @@ conditioningPlan = [];
     , plan=conditioningPlan ...
     , exogenousFrom="inputData" ...
     , contributions=false ...
-    , includeInitial=false...
+    , includeInitial=true...
 );
 
 % Condense the results to percentiles
@@ -276,7 +289,7 @@ outputPath = fullfile(outputFolder, "condForecastPercentiles");
 % Save the conditional forecast results as percentiles as MAT and/or CSV and/or
 % XLSX files
 % save(outputPath + ".mat", "condForecastPercentilesTbl");
-tablex.writetimetable(condForecastPercentilesTbl, outputPath + ".csv");
+% tablex.writetimetable(condForecastPercentilesTbl, outputPath + ".csv");
 tablex.writetimetable(condForecastPercentilesTbl, outputPath + ".xlsx");
 
 if ~isempty(condForecastContribsTbl)
@@ -291,7 +304,7 @@ if ~isempty(condForecastContribsTbl)
 
     % Save the results
     % save(outputPath + ".mat", "condForecastContribsPercentilesTbl");
-    tablex.writetimetable(condForecastContribsPercentilesTbl, outputPath + ".csv");
+    % tablex.writetimetable(condForecastContribsPercentilesTbl, outputPath + ".csv");
     tablex.writetimetable(condForecastContribsPercentilesTbl, outputPath + ".xlsx");
 end
 
@@ -324,7 +337,7 @@ outputPath = fullfile(outputFolder, "responsePercentiles");
 % Save the shock response results as percentiles as MAT and/or CSV and/or XLSX
 % files
 % save(outputPath + ".mat", "responsePercentilesTbl");
-tablex.writetimetable(responsePercentilesTbl, outputPath + ".csv");
+% tablex.writetimetable(responsePercentilesTbl, outputPath + ".csv");
 tablex.writetimetable(responsePercentilesTbl, outputPath + ".xlsx");
 
 % Plot the shock response results as percentiles
@@ -355,7 +368,7 @@ outputPath = fullfile(outputFolder, "fevdPercentiles");
 
 % Save the results as percentiles as MAT and/or CSV and/or XLSX files
 % save(outputPath + ".mat", "fevdPercentilesTbl");
-tablex.writetimetable(fevdPercentilesTbl, outputPath + ".csv");
+% tablex.writetimetable(fevdPercentilesTbl, outputPath + ".csv");
 tablex.writetimetable(fevdPercentilesTbl, outputPath + ".xlsx");
 
 
@@ -376,13 +389,13 @@ contribMedianTbl = tablex.apply(contribTbl, medianFunc);
 display(contribMedianTbl);
 
 % Define the output path for saving the results
-outputPath = fullfile(outputFolder, "contribPercentiles");
+outputPath = fullfile(outputFolder, "contribMedian");
 
-% Save the shock contribution results as percentiles as MAT and/or CSV and/or
+% Save the shock contribution results as median as MAT and/or CSV and/or
 % XLSX files
-% save(outputPath + ".mat", "contribPercentilesTbl");
-% tablex.writetimetable(contribPercentilesTbl, outputPath + ".csv");
-tablex.writetimetable(contribPercentilesTbl, outputPath + ".xlsx");
+% save(outputPath + ".mat", "contribMedianTbl");
+% tablex.writetimetable(contribMedianTbl, outputPath + ".csv");
+tablex.writetimetable(contribMedianTbl, outputPath + ".xlsx");
 
 % Plot the shock response results as percentiles
 figureHandles = chartpack.contributionsMedian( ...
@@ -392,5 +405,10 @@ figureHandles = chartpack.contributionsMedian( ...
 
 % Save the figures as a PDF
 chartpack.printFiguresPDF(figureHandles, outputPath);
+
+%% Tasks completed
+
+fprintf("\n\nAll selected tasks have been completed.\n");
+fprintf("Check the output folder <a href=""matlab: ls %s"">%s</a> for the results.\n\n", outputFolder, outputFolder);
 
 

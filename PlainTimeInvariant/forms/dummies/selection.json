@@ -8,7 +8,7 @@
     ]
   },
   "InitialObs": {
-    "value": false,
+    "value": true,
     "label": "Initial observations",
     "target": [
       "dummies",

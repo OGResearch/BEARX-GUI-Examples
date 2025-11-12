@@ -9,10 +9,10 @@
       
       
       
-        <link rel="prev" href="zeros.html">
+        <link rel="prev" href="selection.html">
       
       
-        <link rel="next" href="generalRestrict.html">
+        <link rel="next" href="notes.html">
       
       
       <link rel="icon" href="../assets/images/favicon.png">
@@ -20,7 +20,7 @@
     
     
       
-        <title>Inequality (sign) restrictions - Bear Toolbox GUI</title>
+        <title>Estimator settings - Bear Toolbox GUI</title>
       
     
     
@@ -69,6 +69,11 @@
     <label class="md-overlay" for="__drawer"></label>
     <div data-md-component="skip">
       
+        
+        <a href="#list-of-names" class="md-skip">
+          Skip to content
+        </a>
+      
     </div>
     <div data-md-component="announce">
       
@@ -99,7 +104,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Inequality (sign) restrictions
+              Estimator settings
             
           </span>
         </div>
@@ -200,11 +205,13 @@
         
   
   
+    
+  
   
     
     
-      <li class="md-tabs__item">
-        <a href="../estimation/selection.html" class="md-tabs__link">
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="selection.html" class="md-tabs__link">
           
   
     
@@ -280,13 +287,11 @@
         
   
   
-    
-  
   
     
     
-      <li class="md-tabs__item md-tabs__item--active">
-        <a href="selection.html" class="md-tabs__link">
+      <li class="md-tabs__item">
+        <a href="../identification/selection.html" class="md-tabs__link">
           
   
     
@@ -498,8 +503,10 @@
       
   
   
+    
   
   
+  
     
     
       
@@ -512,17 +519,20 @@
     
     
       
+        
+        
+      
       
     
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
         
           
-          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
             
   
   <span class="md-ellipsis">
@@ -534,7 +544,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
           <label class="md-nav__title" for="__nav_2">
             <span class="md-nav__icon md-icon"></span>
             Reduced-form estimation
@@ -548,7 +558,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../estimation/selection.html" class="md-nav__link">
+      <a href="selection.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -567,10 +577,29 @@
                 
   
   
+    
   
   
-    <li class="md-nav__item">
-      <a href="../estimation/settings.html" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Estimator settings
+    
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="settings.html" class="md-nav__link md-nav__link--active">
         
   
   <span class="md-ellipsis">
@@ -580,6 +609,60 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      List of names
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-of-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector of numbers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-date-period" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single date (period)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#span-date-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      Span (date range)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -592,7 +675,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../estimation/notes.html" class="md-nav__link">
+      <a href="notes.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1002,10 +1085,8 @@
       
   
   
-    
   
   
-  
     
     
       
@@ -1024,20 +1105,17 @@
     
     
       
-        
-        
-      
       
     
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" checked>
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
         
           
-          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="">
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -1049,7 +1127,7 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="true">
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
           <label class="md-nav__title" for="__nav_6">
             <span class="md-nav__icon md-icon"></span>
             Structural identification
@@ -1063,7 +1141,7 @@
   
   
     <li class="md-nav__item">
-      <a href="selection.html" class="md-nav__link">
+      <a href="../identification/selection.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1085,7 +1163,7 @@
   
   
     <li class="md-nav__item">
-      <a href="cholesky.html" class="md-nav__link">
+      <a href="../Cholesky.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1107,46 +1185,16 @@
   
   
     <li class="md-nav__item">
-      <a href="zeros.html" class="md-nav__link">
+      <a href="../identification/InstantZeros.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
-    Exact zeros restrictions
+    Instant zero restrictions
     
   </span>
   
 
       </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-    
-  
-  
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
-      
-      
-      
-      <a href="inequality.html" class="md-nav__link md-nav__link--active">
-        
-  
-  <span class="md-ellipsis">
-    Inequality (sign) restrictions
-    
-  </span>
-  
-
-      </a>
-      
     </li>
   
 
@@ -1159,7 +1207,29 @@
   
   
     <li class="md-nav__item">
-      <a href="generalRestrict.html" class="md-nav__link">
+      <a href="../identification/IneqRestrict.html" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Inequality (sign) restrictions
+    
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../GeneralRestrict.md" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1181,7 +1251,7 @@
   
   
     <li class="md-nav__item">
-      <a href="notes.html" class="md-nav__link">
+      <a href="../identification/notes.html" class="md-nav__link">
         
   
   <span class="md-ellipsis">
@@ -1677,6 +1747,50 @@
   
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#list-of-names" class="md-nav__link">
+    <span class="md-ellipsis">
+      List of names
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#vector-of-numbers" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector of numbers
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#single-date-period" class="md-nav__link">
+    <span class="md-ellipsis">
+      Single date (period)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#span-date-range" class="md-nav__link">
+    <span class="md-ellipsis">
+      Span (date range)
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -1694,9 +1808,152 @@
   
 
 
-  <h1>Inequality (sign) restrictions</h1>
+  <h1>Estimator settings</h1>
 
-<p><a href="/Users/myself/Documents/ogr-external-projects/ecb-bear/BEARX-GUI-Examples/PlainTimeInvariant/tables/IneqRestrict.xlsx"><span class="twemoji"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M10.76 8.69a.76.76 0 0 0-.76.76V20.9c0 .42.34.76.76.76.19 0 .35-.06.48-.16l1.91-1.55 1.66 3.62c.13.27.4.43.69.43.11 0 .22 0 .33-.08l2.76-1.28c.38-.18.56-.64.36-1.01L17.28 18l2.41-.45a.9.9 0 0 0 .43-.26c.27-.32.23-.79-.12-1.08l-8.74-7.35-.01.01a.76.76 0 0 0-.49-.18M15 10V8h5v2zm-1.17-5.24 2.83-2.83 1.41 1.41-2.83 2.83zM10 0h2v5h-2zM3.93 14.66l2.83-2.83 1.41 1.41-2.83 2.83zm0-11.32 1.41-1.41 2.83 2.83-1.41 1.41zM7 10H2V8h5z"/></svg></span> Edit inequality (sign) restrictions table</a></p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Scroll down for instructions on how to input different types of values.</p>
+</div>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>After making changes in the form below,
+remember to press the <strong>Submit</strong> button,
+otherwise your changes will be discarded
+when you navigate away from this page.</p>
+</div>
+<p><h2>MeanOLSPanel</h2>
+<br/>
+<form action='matlab:gui_collectEstimatorSettings '>
+<input style='color:black' style='background-color:gray' type='submit' value='Submit'>
+<br/>
+<br/>
+<label for='Autoregression'>Prior on first-order autoregression</label><br/>
+<input style='color:black; background-color:lightgray' type='text' id='Autoregression' name='Autoregression' value='0.8' size='20'><br/>
+<input style='margin-top:1em; margin-bottom:1em; margin-left:-0.1em' type='checkbox' id='BlockExogenous' name='BlockExogenous' value='true' >&nbsp;
+<label for='BlockExogenous'>Block exogeneity flag</label><br/>
+<label for='Burnin'>Number of burn-in draws</label><br/>
+<input style='color:black; background-color:lightgray' type='text' id='Burnin' name='Burnin' value='0' size='20'><br/>
+<label for='Exogenous'>Priors on exogenous variables flag</label><br/>
+<input style='color:black; background-color:lightgray' type='text' id='Exogenous' name='Exogenous' value='false' size='20'><br/>
+<label for='Lambda1'>Overall tightness of priors</label><br/>
+<input style='color:black; background-color:lightgray' type='text' id='Lambda1' name='Lambda1' value='0.1' size='20'><br/>
+<label for='Lambda2'>Variable weighting</label><br/>
+<input style='color:black; background-color:lightgray' type='text' id='Lambda2' name='Lambda2' value='0.5' size='20'><br/>
+<label for='Lambda3'>Leg decay</label><br/>
+<input style='color:black; background-color:lightgray' type='text' id='Lambda3' name='Lambda3' value='1' size='20'><br/>
+<label for='Lambda4'>Exogenous variable tightness</label><br/>
+<input style='color:black; background-color:lightgray' type='text' id='Lambda4' name='Lambda4' value='100' size='20'><br/>
+<label for='Lambda5'>Block exogeneity shrinkage</label><br/>
+<input style='color:black; background-color:lightgray' type='text' id='Lambda5' name='Lambda5' value='0.001' size='20'><br/>
+<label for='MaxNumUnstableAttempts'>Maximum number of unstable sampling attempts</label><br/>
+<input style='color:black; background-color:lightgray' type='text' id='MaxNumUnstableAttempts' name='MaxNumUnstableAttempts' value='1000' size='20'><br/>
+<label for='StabilityThreshold'>Threshold for maximum eigenvalue magnitude</label><br/>
+<input style='color:black; background-color:lightgray' type='text' id='StabilityThreshold' name='StabilityThreshold' value='' size='20'><br/>
+<br/>
+<input style='color:black' style='background-color:gray' type='submit' value='Submit'>
+</form>
+<br/></p>
+<hr />
+<div class="tabbed-set tabbed-alternate" data-tabs="1:2"><input checked="checked" id="__tabbed_1_1" name="__tabbed_1" type="radio" /><input id="__tabbed_1_2" name="__tabbed_1" type="radio" /><div class="tabbed-labels"><label for="__tabbed_1_1">How to enter values of different types</label><label for="__tabbed_1_2">Details of the individual settings</label></div>
+<div class="tabbed-content">
+<div class="tabbed-block">
+<h5 id="list-of-names">List of names</h5>
+<dl>
+<dd>
+<p>Enter a list of names separated by one or more spaces (use more than one space
+for a visual aid); for example:</p>
+<p><code>GDP   CPI   UNEMP</code></p>
+</dd>
+</dl>
+<h5 id="vector-of-numbers">Vector of numbers</h5>
+<dl>
+<dd>
+<p>Enter a vector of numbers separated by one or more spaces (use more than one
+space for a visual aid); for example:</p>
+<p><code>1.5   2.3   3.7   4.0</code></p>
+</dd>
+</dl>
+<h5 id="single-date-period">Single date (period)</h5>
+<dl>
+<dd>
+<p>Enter a single date (period) as a SDMX date string. The BEAR Toolbox supports
+periods of annual, quarterly, monthly and daily frequencies:</p>
+<table>
+<thead>
+<tr>
+<th>Frequency</th>
+<th>SDMX format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Annual</td>
+<td><code>YYYY</code></td>
+<td><code>2035</code></td>
+</tr>
+<tr>
+<td>Quarterly</td>
+<td><code>YYYY-QX</code></td>
+<td><code>2035-Q2</code></td>
+</tr>
+<tr>
+<td>Monthly</td>
+<td><code>YYYY-MM</code></td>
+<td><code>2035-07</code></td>
+</tr>
+<tr>
+<td>Daily</td>
+<td><code>YYYY-MM-DD</code></td>
+<td><code>2035-07-21</code></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+<h5 id="span-date-range">Span (date range)</h5>
+<dl>
+<dd>
+<p>Enter the start date (period) and the end date (period) as two SDMX date strings
+spearated by a space. The BEAR Toolbox supports spans of annual, quarterly,
+monthly and daily frequencies:</p>
+<table>
+<thead>
+<tr>
+<th>Frequency</th>
+<th>SDMX format</th>
+<th>Example</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Annual</td>
+<td><code>YYYY YYYY</code></td>
+<td><code>2030 2035</code></td>
+</tr>
+<tr>
+<td>Quarterly</td>
+<td><code>YYYY-QX YYYY-QX</code></td>
+<td><code>2030-Q2 2035-Q3</code></td>
+</tr>
+<tr>
+<td>Monthly</td>
+<td><code>YYYY-MM YYYY-MM</code></td>
+<td><code>2030-05 2035-07</code></td>
+</tr>
+<tr>
+<td>Daily</td>
+<td><code>YYYY-MM-DD YYYY-MM-DD</code></td>
+<td><code>2030-05-21 2035-07-15</code></td>
+</tr>
+</tbody>
+</table>
+</dd>
+</dl>
+</div>
+<div class="tabbed-block"></div>
+</div>
+</div>
 
 
 
