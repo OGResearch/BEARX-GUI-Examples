@@ -4,7 +4,7 @@
 % Graphical User Interface. Feel free to edit and adapt it further to your
 % needs.
 %
-% Generated 12-Nov-2025 10:54:41
+% Generated 12-Nov-2025 12:30:56
 %
 
 
@@ -276,7 +276,7 @@ conditioningPlan = [];
     , plan=conditioningPlan ...
     , exogenousFrom="inputData" ...
     , contributions=false ...
-    , includeInitial=true...
+    , includeInitial=false...
 );
 
 % Condense the results to percentiles
@@ -406,9 +406,11 @@ figureHandles = chartpack.contributionsMedian( ...
 % Save the figures as a PDF
 chartpack.printFiguresPDF(figureHandles, outputPath);
 
+
 %% Tasks completed
 
 fprintf("\n\nAll selected tasks have been completed.\n");
 fprintf("Check the output folder <a href=""matlab: ls %s"">%s</a> for the results.\n\n", outputFolder, outputFolder);
 
+gui.returnFromCommandWindow();
 
