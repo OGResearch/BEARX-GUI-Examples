@@ -2,7 +2,7 @@
   "FilePath": {
     "label": "Path to the input data file (XLSX, CSV, or MAT)",
     "type": "filename",
-    "value": "/Users/myself/Documents/ogr-external-projects/ecb-bear/BEARX-GUI-Examples/PlainTimeInvariant/exampleDataX.csv",
+    "value": "./exampleDataX.csv",
     "show": true
   },
   "ExcelSheet": {

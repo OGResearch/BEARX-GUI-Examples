@@ -16,7 +16,7 @@
     ]
   },
   "SumCoeff": {
-    "value": false,
+    "value": true,
     "label": "Sum of coefficients",
     "target": [
       "dummies",

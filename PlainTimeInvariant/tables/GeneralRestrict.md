@@ -9,10 +9,13 @@ following system properties:
 * $SHKRESP(periods, 'endogenous', 'shock') for shock response in the
 'endogenous' variable to the 'shock' in the specified period or periods
 
-* $SHKCONT(periods, 'endogenous', 'shock') for the contribution of the 'shock'
-to the 'endogenous' variable in the specified period or periods %
+* $SHKCONT('period', 'endogenous', 'shock') for the contribution of the 'shock'
+to the 'endogenous' variable in the specified period
 
 * $SHKEST(periods, 'shock') for the estimates of the 'shock' in the specified
+period or periods
+
+* $FEVD(periods, 'endogenous', 'shock') for the estimates of the 'shock' in the specified
 period or periods
 
 Period or periods are enterd as a single period number, a vector of numbers, or
@@ -26,6 +29,5 @@ Do not remove the triple backtick marks.
 
 
 ```
-
 ```
 

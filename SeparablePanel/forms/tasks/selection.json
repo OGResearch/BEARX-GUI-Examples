@@ -16,7 +16,7 @@
     "label": "Run unconditional forecast using structural model"
   },
   "ConditionalForecast": {
-    "value": false,
+    "value": true,
     "label": "Run conditional forecast"
   },
   "ShockResponses": {
@@ -25,10 +25,10 @@
   },
   "ShockContributions": {
     "value": true,
-    "label": "Calculate contributions of structural shocks"
+    "label": "Calculate structural shock contributions to historical paths"
   },
   "FEVD": {
-    "value": false,
+    "value": true,
     "label": "Calculate forecast error variance decomposition"
   }
 }

@@ -4,7 +4,7 @@
 % Graphical User Interface. Feel free to edit and adapt it further to your
 % needs.
 %
-% Generated 12-Nov-2025 12:25:47
+% Generated 16-Nov-2025 21:23:49
 %
 
 
@@ -59,7 +59,7 @@ meta = Meta( ...
     , Units=["US", "EA", "UK"] ...
     , ExogenousNames="Oil" ...
     , ShockConcepts=["DEM", "SUP", "POL"] ...
-    , Order=3 ...
+    , Order=2 ...
     , Intercept=true ...
     , EstimationSpan=datex.span("1975-Q1", "2014-Q4") ...
     , IdentificationHorizon=4 ...
@@ -69,7 +69,7 @@ meta = Meta( ...
 %% Load input data table 
 
 % Load the input data table
-inputTbl = tablex.fromFile("/Users/myself/Documents/ogr-external-projects/ecb-bear/BEARX-GUI-Examples/SeparablePanel/inputData.csv");
+inputTbl = tablex.fromFile("./inputData.csv");
 display(inputTbl);
 
 
@@ -117,12 +117,10 @@ info = redModel.presample(1000);
 display(info);
 
 
-%% Create InstantZeros identification object 
+%% Create Cholesky identification object 
 
-ident = identifier.InstantZeros( ...
-    FileName="tables/InstantZeros.xlsx" ...
-    , RandomGenerator="randn" ...
-    , FactorizationFunc="chol" ...
+ident = identifier.Cholesky( ...
+    Order="" ...
 );
 
 display(ident);
@@ -169,14 +167,78 @@ outputPath = fullfile(outputFolder, "redForecastPercentiles");
 tablex.writetimetable(redForecastPercentilesTbl, outputPath + ".xlsx");
 
 % Plot the forecast results as percentiles
-% figureHandles = chartpack.forecastPercentiles( ...
-%     redForecastPercentilesTbl, redModel ...
-%     , "figureTitle", "Reduced-form model forecast (percentiles)" ...
-%     , "figureLegend", percentilesLegend ...
-% );
+figureHandles = chartpack.forecastPercentiles( ...
+    redForecastPercentilesTbl, redModel ...
+    , "figureTitle", "Reduced-form model forecast (percentiles)" ...
+    , "figureLegend", percentilesLegend ...
+);
 
 % Save the figures as a PDF
-% % chartpack.printFiguresPDF(figureHandles, outputPath);
+chartpack.printFiguresPDF(figureHandles, outputPath);
+
+
+%% Run conditional forecast 
+
+% Read table with custom conditioning data
+inputPath__ = fullfile("tables", "ConditioningData.xlsx");
+conditioningData = tablex.readConditioningData( ...
+    inputPath__, ...
+    timeColumn="Conditioning data" ...
+);
+display(conditioningData);
+
+% No conditioning plan used, all shocks are taken into account
+conditioningPlan = [];
+
+
+% Run a conditional forecast
+[condForecastTbl, condForecastContribsTbl] = structModel.conditionalForecast( ...
+    datex.span("2015-Q1", "2016-Q4") ...
+    , conditions=conditioningData ...
+    , plan=conditioningPlan ...
+    , exogenousFrom="inputData" ...
+    , contributions=false ...
+    , includeInitial=true...
+);
+
+% Condense the results to percentiles
+condForecastPercentilesTbl = tablex.apply(condForecastTbl, percentilesFunc);
+display(condForecastPercentilesTbl);
+
+% Define the output path for saving the results
+outputPath = fullfile(outputFolder, "condForecastPercentiles");
+
+% Save the conditional forecast results as percentiles as MAT and/or CSV and/or
+% XLSX files
+% save(outputPath + ".mat", "condForecastPercentilesTbl");
+% tablex.writetimetable(condForecastPercentilesTbl, outputPath + ".csv");
+tablex.writetimetable(condForecastPercentilesTbl, outputPath + ".xlsx");
+
+if ~isempty(condForecastContribsTbl)
+    % Condense the results to percentiles
+    condForecastContribsPercentilesTbl = tablex.apply(condForecastContribsTbl, percentilesFunc);
+
+    % Flatten the 3D contributions table to 2D contributions table
+    condForecastContribsPercentilesTbl = tablex.flatten(condForecastContribsPercentilesTbl);
+
+    % Define the output path for saving the results
+    outputPath = fullfile(outputFolder, "condForecastContribsPercentiles");
+
+    % Save the results
+    % save(outputPath + ".mat", "condForecastContribsPercentilesTbl");
+    % tablex.writetimetable(condForecastContribsPercentilesTbl, outputPath + ".csv");
+    tablex.writetimetable(condForecastContribsPercentilesTbl, outputPath + ".xlsx");
+end
+
+% Plot the forecast results as percentiles
+figureHandles = chartpack.conditionalForecastPercentiles( ...
+    condForecastPercentilesTbl, structModel ...
+    , "figureTitle", "Conditional forecast (percentiles)" ...
+    , "figureLegend", percentilesLegend ...
+);
+
+% Save the figures
+chartpack.printFiguresPDF(figureHandles, outputPath);
 
 
 %% Simulate shock responses
@@ -209,6 +271,27 @@ figureHandles = chartpack.responsePercentiles( ...
 
 % Save the figures as a PDF
 chartpack.printFiguresPDF(figureHandles, outputPath);
+
+
+%% Calculate forecast error variance decomposition (FEVD)
+
+% Calculate FEVD over shock response horizon
+fevdTbl = structModel.calculateFEVD( ...
+    includeInitial=true ...
+);
+
+% Condense the results to percentiles and flatten the 3D table to 2D table
+fevdPercentilesTbl = tablex.apply(fevdTbl, percentilesFunc);
+fevdPercentilesTbl = tablex.flatten(fevdPercentilesTbl);
+display(fevdPercentilesTbl);
+
+% Define the output path for saving the results
+outputPath = fullfile(outputFolder, "fevdPercentiles");
+
+% Save the results as percentiles as MAT and/or CSV and/or XLSX files
+% save(outputPath + ".mat", "fevdPercentilesTbl");
+% tablex.writetimetable(fevdPercentilesTbl, outputPath + ".csv");
+tablex.writetimetable(fevdPercentilesTbl, outputPath + ".xlsx");
 
 
 %% Calculate shock contributions to historical paths
@@ -245,9 +328,11 @@ figureHandles = chartpack.contributionsMedian( ...
 % Save the figures as a PDF
 chartpack.printFiguresPDF(figureHandles, outputPath);
 
+
 %% Tasks completed
 
 fprintf("\n\nAll selected tasks have been completed.\n");
 fprintf("Check the output folder <a href=""matlab: ls %s"">%s</a> for the results.\n\n", outputFolder, outputFolder);
 
+gui.returnFromCommandWindow();
 

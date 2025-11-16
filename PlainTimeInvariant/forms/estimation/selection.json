@@ -1,5 +1,6 @@
 {
   "BetaTV": {
+    "label": "Time-varying VAR (<code>BetaTV</code>)",
     "category": "Time-varying estimators",
     "value": false,
     "target": [
@@ -8,6 +9,7 @@
     ]
   },
   "CCMMSV": {
+    "label": "CCMM stochastic volatility VAR with random walk heteroscedasticity (<code>CCMMSV</code>)",
     "category": "Time-varying estimators",
     "value": false,
     "target": [
@@ -16,6 +18,7 @@
     ]
   },
   "CCMMSVO": {
+    "label": "CCMM stochastic volatility VAR with outliers (<code>CCMMSVO</code>)",
     "category": "Time-varying estimators",
     "value": false,
     "target": [
@@ -24,6 +27,7 @@
     ]
   },
   "CCMMSVOT": {
+    "label": "CCMM Stochastic volatility with jumps and large shocks (<code>CCMMSVOT</code>)",
     "category": "Time-varying estimators",
     "value": false,
     "target": [
@@ -32,6 +36,7 @@
     ]
   },
   "CarrieroSV": {
+    "label": "Carriero stochastic volatility VAR (<code>CarrieroSV</code>)",
     "category": "Time-varying estimators",
     "value": false,
     "target": [
@@ -40,6 +45,7 @@
     ]
   },
   "CogleySargentSV": {
+    "label": "Cogley-Sargent stochastic-volatility VAR (<code>CogleySargentSV</code>)",
     "category": "Time-varying estimators",
     "value": false,
     "target": [
@@ -48,6 +54,7 @@
     ]
   },
   "Flat": {
+    "label": "VAR with flat prior (<code>Flat</code>)",
     "category": "Plain estimators",
     "value": false,
     "target": [
@@ -56,6 +63,7 @@
     ]
   },
   "GenLargeShockSV": {
+    "label": "General stochastic volatility VAR for large shocks (<code>GenLargeShockSV</code>)",
     "category": "Time-varying estimators",
     "value": false,
     "target": [
@@ -64,6 +72,7 @@
     ]
   },
   "GeneralTV": {
+    "label": "VAR with time-varying parameters and stochastic volatility (<code>GeneralTV</code>)",
     "category": "Time-varying estimators",
     "value": false,
     "target": [
@@ -72,6 +81,7 @@
     ]
   },
   "IndNormalWishart": {
+    "label": "VAR with indenpendent Normal-Wishart priors (<code>IndNormalWishart</code>)",
     "category": "Plain estimators",
     "value": false,
     "target": [
@@ -80,6 +90,7 @@
     ]
   },
   "LargeShockSV": {
+    "label": "Stochastic volatility VAR for large shocks (<code>LargeShockSV</code>)",
     "category": "Time-varying estimators",
     "value": false,
     "target": [
@@ -88,6 +99,7 @@
     ]
   },
   "Minnesota": {
+    "label": "VAR with Minnesota prior (<code>Minnesota</code>)",
     "category": "Plain estimators",
     "value": false,
     "target": [
@@ -96,6 +108,7 @@
     ]
   },
   "NormalDiffuse": {
+    "label": "VAR with Normal-Diffuse prior (<code>NormalDiffuse</code>)",
     "category": "Plain estimators",
     "value": false,
     "target": [
@@ -104,6 +117,7 @@
     ]
   },
   "NormalWishart": {
+    "label": "VAR with Normal-Wishart prior (<code>NormalWishart</code>)",
     "category": "Plain estimators",
     "value": true,
     "target": [
@@ -112,6 +126,7 @@
     ]
   },
   "Ordinary": {
+    "label": "Ordinary least squares (<code>Ordinary</code>)",
     "category": "Plain estimators",
     "value": false,
     "target": [
@@ -120,6 +135,7 @@
     ]
   },
   "RandomInertiaSV": {
+    "label": "Stochastic Volatility with Random Inertia (<code>RandomInertiaSV</code>)",
     "category": "Time-varying estimators",
     "value": false,
     "target": [
@@ -128,6 +144,7 @@
     ]
   },
   "DynamicCrossPanel": {
+    "label": "Dynamic cross-unit panel (<code>DynamicCrossPanel</code>)",
     "category": "Panel estimators with cross-unit dependence",
     "value": false,
     "target": [
@@ -136,6 +153,7 @@
     ]
   },
   "StaticCrossPanel": {
+    "label": "Static cross-unit panel (<code>StaticCrossPanel</code>)",
     "category": "Panel estimators with cross-unit dependence",
     "value": false,
     "target": [
@@ -144,6 +162,7 @@
     ]
   },
   "HierarchicalPanel": {
+    "label": "Hierarchical panel (<code>HierarchicalPanel</code>)",
     "category": "Panel estimators with separable units",
     "value": false,
     "target": [
@@ -152,6 +171,7 @@
     ]
   },
   "MeanOLSPanel": {
+    "label": "Mean OLS panel (<code>MeanOLSPanel</code>)",
     "category": "Panel estimators with separable units",
     "value": false,
     "target": [
@@ -160,6 +180,7 @@
     ]
   },
   "NormalWishartPanel": {
+    "label": "Normal-Wishart panel (<code>NormalWishartPanel</code>)",
     "category": "Panel estimators with separable units",
     "value": false,
     "target": [
@@ -168,6 +189,7 @@
     ]
   },
   "Threshold": {
+    "label": "VAR with threshold-based regime switching (<code>Threshold</code>)",
     "category": "Specialized estimators",
     "value": false,
     "target": [
@@ -176,6 +198,7 @@
     ]
   },
   "MixedFrequency": {
+    "label": "Mixed-frequency VAR (<code>MixedFrequency</code>)",
     "category": "Specialized estimators",
     "value": false,
     "target": [
@@ -184,7 +207,8 @@
     ]
   },
   "FlatFAVAROnestep": {
-    "category": "Plain FAVAR estimators",
+    "label": "One-step FAVAR with flat prior (<code>FlatFAVAROnestep</code>)",
+    "category": "One-step factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -192,7 +216,8 @@
     ]
   },
   "IndNormalWishartFAVAROnestep": {
-    "category": "Plain FAVAR estimators",
+    "label": "One-step FAVAR with independent Normal-Wishart prior (<code>IndNormalWishartFAVAROnestep</code>)",
+    "category": "One-step factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -200,7 +225,8 @@
     ]
   },
   "MinnesotaFAVAROnestep": {
-    "category": "Plain FAVAR estimators",
+    "label": "One-step FAVAR with Minnesota prior (<code>MinnesotaFAVAROnestep</code>)",
+    "category": "One-step factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -208,7 +234,8 @@
     ]
   },
   "NormalDiffuseFAVAROnestep": {
-    "category": "Plain FAVAR estimators",
+    "label": "One-step FAVAR with Normal-Diffuse prior (<code>NormalDiffuseFAVAROnestep</code>)",
+    "category": "One-step factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -216,7 +243,8 @@
     ]
   },
   "NormalWishartFAVAROnestep": {
-    "category": "Plain FAVAR estimators",
+    "label": "One-step FAVAR with Normal-Wishart prior (<code>NormalWishartFAVAROnestep</code>)",
+    "category": "One-step factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -224,7 +252,8 @@
     ]
   },
   "BetaTVFAVAR": {
-    "category": "Time-varying FAVAR estimators",
+    "label": "Two-step FAVAR with time-varying coefficients (<code>BetaTVFAVAR</code>)",
+    "category": "Time-varying factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -232,7 +261,8 @@
     ]
   },
   "CarrieroSVFAVAR": {
-    "category": "Time-varying FAVAR estimators",
+    "label": "Two-step FAVAR with Carriero stochastic volatility (<code>CarrieroSVFAVAR</code>)",
+    "category": "Time-varying factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -240,7 +270,8 @@
     ]
   },
   "CogleySargentSVFAVAR": {
-    "category": "Time-varying FAVAR estimators",
+    "label": "Two-step FAVAR with Cogley-Sargent stochastic volatility (<code>CogleySargentSVFAVAR</code>)",
+    "category": "Time-varying factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -248,7 +279,8 @@
     ]
   },
   "FlatFAVARTwostep": {
-    "category": "Plain FAVAR estimators",
+    "label": "Two-step FAVAR with flat prior (<code>FlatFAVARTwostep</code>)",
+    "category": "Two-step factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -256,7 +288,8 @@
     ]
   },
   "GeneralTVFAVAR": {
-    "category": "Time-varying FAVAR estimators",
+    "label": "Two-step FAVAR with time-varying parameters and stochastic volatility (<code>GeneralTVFAVAR</code>)",
+    "category": "Time-varying factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -264,7 +297,8 @@
     ]
   },
   "IndNormalWishartFAVARTwostep": {
-    "category": "Plain FAVAR estimators",
+    "label": "Two-step FAVAR with individual Normal-Wishart prior (<code>IndNormalWishartFAVARTwostep</code>)",
+    "category": "Two-step factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -272,7 +306,8 @@
     ]
   },
   "MinnesotaFAVARTwostep": {
-    "category": "Plain FAVAR estimators",
+    "label": "Two-step FAVAR with Minnesota prior (<code>MinnesotaFAVARTwostep</code>)",
+    "category": "Two-step factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -280,7 +315,8 @@
     ]
   },
   "NormalDiffuseFAVARTwostep": {
-    "category": "Plain FAVAR estimators",
+    "label": "Two-step FAVAR with Normal-Diffuse prior (<code>NormalDiffuseFAVARTwostep</code>)",
+    "category": "Two-step factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -288,7 +324,8 @@
     ]
   },
   "NormalWishartFAVARTwostep": {
-    "category": "Plain FAVAR estimators",
+    "label": "Two-step FAVAR with Normal-Wishart prior (<code>NormalWishartFAVARTwostep</code>)",
+    "category": "Two-step factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",
@@ -296,7 +333,8 @@
     ]
   },
   "RandomInertiaSVFAVAR": {
-    "category": "Time-varying FAVAR estimators",
+    "label": "Two-step FAVAR with random-inertia stochastic volatility (<code>RandomInertiaSVFAVAR</code>)",
+    "category": "Time-varying factor-augmented estimators",
     "value": false,
     "target": [
       "estimation",

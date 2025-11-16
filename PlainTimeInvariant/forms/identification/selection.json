@@ -16,7 +16,7 @@
     ]
   },
   "InstantZeros": {
-    "value": true,
+    "value": false,
     "label": "Instant zero restrictions on instantaneous impact",
     "target": [
       "identification",
@@ -24,7 +24,7 @@
     ]
   },
   "IneqRestrict": {
-    "value": false,
+    "value": true,
     "label": "Inequality (sign) restrictions on shock responses",
     "target": [
       "identification",
